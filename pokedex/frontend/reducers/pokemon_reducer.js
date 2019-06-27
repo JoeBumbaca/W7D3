@@ -3,14 +3,12 @@ import { RECEIVE_ALL_POKEMON } from '../actions/pokemon_actions';
 const pokemonReducer = (state = {}, action) => {
   
   Object.freeze(state);
-  newState = Object.assign({}, state);
  
   switch(action.type) {
     case RECEIVE_ALL_POKEMON:      
-     action.pokemon.forEach(poke => {
-       newState[poke.id] = poke;
-     })
-     
+
+     const newState = merge({}, state , action.pokemon )
+
      return newState;
     default:
       return state;
